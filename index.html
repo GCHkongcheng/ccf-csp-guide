@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CCF-CSP 12 周备考训练台：阶段路线、每日动作、真题练习、资源链接与考场策略。">
+  <title>CCF-CSP 备考训练台</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --ink: #171918;
+      --ink-soft: #222826;
+      --paper: #f4f0e8;
+      --paper-deep: #e7e0d3;
+      --line: rgba(244, 240, 232, .16);
+      --line-dark: rgba(23, 25, 24, .16);
+      --orange: #f2743b;
+      --orange-light: #ff9c67;
+      --mint: #9ad4bd;
+      --sky: #b9d9e6;
+      --yellow: #f7d681;
+      --muted: #a8b0ac;
+      --display: "DM Sans", "Microsoft YaHei", sans-serif;
+      --mono: "Space Mono", "Cascadia Mono", Consolas, monospace;
+      --shadow: 0 18px 50px rgba(23, 25, 24, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--display);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--orange-light); outline-offset: 3px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      min-height: 68px;
+      padding: 14px clamp(20px, 5vw, 76px);
+      color: var(--paper);
+      background: rgba(23, 25, 24, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      color: var(--ink);
+      background: var(--orange);
+      font-weight: 700;
+      border-radius: 50%;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 16px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: var(--paper); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: var(--paper);
+      background: var(--ink);
+      padding: clamp(56px, 9vw, 120px) clamp(20px, 8vw, 120px) 78px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .2;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(90deg, black, transparent 85%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: clamp(36px, 8vw, 120px);
+      max-width: 1240px;
+      margin: auto;
+    }
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--orange-light);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 720px;
+      margin-bottom: 24px;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .99;
+      letter-spacing: -.055em;
+    }
+    .hero-copy {
+      max-width: 610px;
+      margin-bottom: 32px;
+      color: #ced4d0;
+      font-size: clamp(16px, 2vw, 20px);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { color: var(--ink); background: var(--orange); }
+    .button.primary:hover { background: var(--orange-light); }
+    .button.ghost { color: var(--paper); border-color: var(--line); background: transparent; }
+    .button.ghost:hover { background: rgba(244, 240, 232, .08); }
+
+    .hero-board {
+      align-self: end;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: rgba(244, 240, 232, .045);
+      box-shadow: var(--shadow);
+    }
+    .board-top { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 26px; color: var(--muted); font: 11px var(--mono); }
+    .board-top strong { color: var(--mint); font-weight: 400; }
+    .clock {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .clock strong { font: 700 clamp(42px, 7vw, 66px)/1 var(--mono); letter-spacing: -.08em; }
+    .clock span { color: var(--orange-light); font: 12px var(--mono); }
+    .board-list { display: grid; gap: 12px; margin-top: 20px; }
+    .board-row { display: grid; grid-template-columns: 32px 1fr auto; align-items: center; gap: 10px; font-size: 13px; }
+    .board-row i { display: grid; place-items: center; width: 26px; height: 26px; color: var(--ink); background: var(--mint); border-radius: 50%; font: 700 12px var(--mono); font-style: normal; }
+    .board-row em { color: var(--muted); font: 11px var(--mono); font-style: normal; }
+
+    .main { max-width: 1240px; margin: auto; padding: 70px clamp(20px, 5vw, 76px) 110px; }
+    .section { scroll-margin-top: 90px; margin-bottom: 92px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; border-bottom: 1px solid var(--line-dark); padding-bottom: 14px; }
+    .section-kicker { margin: 0 0 7px; color: #c15126; font: 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    h2 { margin-bottom: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.05; letter-spacing: -.04em; }
+    .section-intro { max-width: 530px; margin-bottom: 0; color: #5e6863; font-size: 14px; }
+
+    .path {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      background: var(--line-dark);
+      border: 1px solid var(--line-dark);
+    }
+    .path-item { min-height: 210px; padding: 23px; background: var(--paper); }
+    .path-item:nth-child(2) { background: #eaf1ed; }
+    .path-item:nth-child(3) { background: #ecf3f5; }
+    .path-item:nth-child(4) { background: #f7eadc; }
+    .path-no { color: #c15126; font: 700 12px var(--mono); }
+    .path-item h3 { margin: 29px 0 9px; font-size: 19px; letter-spacing: -.02em; }
+    .path-item p { margin-bottom: 22px; color: #5e6863; font-size: 13px; }
+    .path-item a { color: #425c55; font: 11px var(--mono); text-underline-offset: 4px; }
+
+    .progress-wrap { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; margin-bottom: 18px; }
+    .progress-track { height: 11px; overflow: hidden; background: #d7d0c4; border-radius: 8px; }
+    .progress-bar { width: 0%; height: 100%; background: var(--orange); transition: width .35s ease; }
+    .progress-label { color: #7a4d3b; font: 12px var(--mono); }
+    .week-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .week-card { padding: 20px; border: 1px solid var(--line-dark); background: rgba(255, 255, 255, .28); }
+    .week-card.completed { border-color: #8ab6a1; background: #e3f0e8; }
+    .week-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+    .week-no { color: #c15126; font: 700 12px var(--mono); }
+    .week-card label { display: flex; align-items: center; gap: 7px; color: #55615b; font-size: 12px; cursor: pointer; }
+    .week-card input { width: 16px; height: 16px; accent-color: var(--orange); }
+    .week-card h3 { margin-bottom: 7px; font-size: 17px; }
+    .week-card p { min-height: 48px; margin-bottom: 16px; color: #66716b; font-size: 13px; }
+    .week-card ul { margin: 0; padding-left: 18px; color: #39433e; font-size: 12px; }
+    .week-card li + li { margin-top: 5px; }
+
+    .split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(270px, .9fr); gap: 36px; align-items: start; }
+    .action-list { display: grid; gap: 0; border-top: 1px solid var(--line-dark); }
+    .action { display: grid; grid-template-columns: 34px 1fr auto; gap: 14px; align-items: start; padding: 17px 0; border-bottom: 1px solid var(--line-dark); }
+    .action-index { color: #c15126; font: 700 12px var(--mono); }
+    .action h3 { margin-bottom: 4px; font-size: 16px; }
+    .action p { margin-bottom: 0; color: #68736d; font-size: 13px; }
+    .action-time { color: #75847d; font: 11px var(--mono); white-space: nowrap; }
+    .note { padding: 23px; color: var(--paper); background: var(--ink-soft); }
+    .note h3 { margin-bottom: 12px; color: var(--mint); font-size: 18px; }
+    .note p { margin-bottom: 18px; color: #c4ceca; font-size: 13px; }
+    .note ol { margin: 0; padding-left: 20px; color: #ecf1ee; font-size: 13px; }
+    .note li + li { margin-top: 10px; }
+
+    .resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .resource { display: flex; justify-content: space-between; gap: 18px; padding: 20px; border: 1px solid var(--line-dark); text-decoration: none; background: rgba(255, 255, 255, .26); transition: background .18s ease, transform .18s ease; }
+    .resource:hover { background: #fff9ef; transform: translateY(-2px); }
+    .resource-tag { display: block; margin-bottom: 10px; color: #c15126; font: 11px var(--mono); }
+    .resource strong { display: block; margin-bottom: 4px; font-size: 16px; }
+    .resource span { display: block; color: #66716b; font-size: 12px; }
+    .resource-arrow { color: #c15126; font: 18px var(--mono); }
+
+    .score-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .score-table th, .score-table td { padding: 14px 12px; text-align: left; border-bottom: 1px solid var(--line-dark); vertical-align: top; }
+    .score-table th { color: #c15126; font: 11px var(--mono); font-weight: 400; }
+    .score-table td:first-child { width: 24%; font-weight: 700; }
+    .callout { margin-top: 20px; padding: 16px 18px; border-left: 4px solid var(--orange); background: #f8e9dc; color: #5d463d; font-size: 13px; }
+
+    .footer { padding: 26px clamp(20px, 5vw, 76px); color: #c4ceca; background: var(--ink); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 22px; max-width: 1240px; margin: auto; font-size: 12px; }
+    .footer a { color: var(--mint); }
+    .reset { border: 0; color: #c4ceca; background: none; font: 11px var(--mono); text-decoration: underline; text-underline-offset: 4px; }
+
+    @media (max-width: 840px) {
+      .hero-inner, .split { grid-template-columns: 1fr; }
+      .hero-board { max-width: 520px; }
+      .path { grid-template-columns: repeat(2, 1fr); }
+      .week-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .topbar { align-items: flex-start; flex-direction: column; gap: 10px; }
+      .nav { justify-content: flex-start; gap: 11px; }
+      .hero { padding-top: 54px; }
+      h1 { font-size: 48px; }
+      .path, .week-grid, .resource-grid { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      .section-intro { margin-top: 16px; }
+      .action { grid-template-columns: 28px 1fr; }
+      .action-time { grid-column: 2; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="回到页面顶部"><span class="brand-mark">C</span> CSP TRAINING DESK</a>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#route">路线图</a>
+      <a href="#plan">12 周计划</a>
+      <a href="#today">今天做什么</a>
+      <a href="#resources">资源库</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">CCF-CSP / 12-week field guide</p>
+        <h1>把备考拆成<br><span style="color: var(--orange-light)">每天能完成的动作。</span></h1>
+        <p class="hero-copy">给第一次参加 CCF-CSP 的你：从 C++ 与复杂度开始，经过基础算法、图论、动态规划和真题模拟，走到考场上可以稳定拿分的状态。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#plan">开始 12 周训练 <span aria-hidden="true">↘</span></a>
+          <a class="button ghost" href="#resources">打开资料库</a>
+        </div>
+      </div>
+      <aside class="hero-board" aria-label="训练台状态">
+        <div class="board-top"><span>SESSION / 01</span><strong>READY TO START</strong></div>
+        <div class="clock"><strong id="dayCount">12</strong><span>WEEKS<br>TO BUILD</span></div>
+        <div class="board-list">
+          <div class="board-row"><i>01</i><span>先过基础语法与 STL</span><em>02 WEEKS</em></div>
+          <div class="board-row"><i>02</i><span>掌握图论与 DP 主干</span><em>06 WEEKS</em></div>
+          <div class="board-row"><i>03</i><span>用整套真题校准节奏</span><em>04 WEEKS</em></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main class="main">
+    <section class="section" id="route">
+      <div class="section-heading">
+        <div><p class="section-kicker">01 / orientation</p><h2>先知道自己在走哪条路</h2></div>
+        <p class="section-intro">CSP 的得分来自稳定完成前几题，再逐步扩展到中档题。路线按照“先拿稳，再变强”的顺序排列。</p>
+      </div>
+      <div class="path">
+        <article class="path-item"><span class="path-no">PHASE 01</span><h3>建立工具感</h3><p>熟悉 C++、STL、输入输出和复杂度，写出不容易崩的基础代码。</p><a href="#resources">看 C++ 资源 ↗</a></article>
+        <article class="path-item"><span class="path-no">PHASE 02</span><h3>覆盖高频模型</h3><p>模拟、搜索、贪心、二分、图论和 DP，形成题型到算法的映射。</p><a href="#resources">看算法资源 ↗</a></article>
+        <article class="path-item"><span class="path-no">PHASE 03</span><h3>练出比赛节奏</h3><p>用历年题做完整训练，学会拿部分分、切换题目和留出调试时间。</p><a href="#resources">看真题入口 ↗</a></article>
+        <article class="path-item"><span class="path-no">PHASE 04</span><h3>收口与上场</h3><p>整理模板、错题和考场清单，最后一周只做校准，不再无限扩展知识点。</p><a href="#exam">看考场策略 ↗</a></article>
+      </div>
+    </section>
+
+    <section class="section" id="plan">
+      <div class="section-heading">
+        <div><p class="section-kicker">02 / twelve-week plan</p><h2>每周只抓一个主线</h2></div>
+        <p class="section-intro">完成一周后勾选它，进度会自动保存在当前浏览器。不要追求“看完”，要追求“能独立写出来”。</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div><span class="progress-label" id="progressLabel">0 / 12 周</span></div>
+      <div class="week-grid" id="weekGrid">
+        <article class="week-card"><div class="week-top"><span class="week-no">W01</span><label><input type="checkbox">完成</label></div><h3>C++ 与 STL</h3><p>把常用容器和算法写到不需要查文档。</p><ul><li>输入输出、函数、引用</li><li>vector / map / set / queue</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W02</span><label><input type="checkbox">完成</label></div><h3>复杂度与基础技巧</h3><p>能从数据范围反推可行算法。</p><ul><li>排序、枚举、前缀和</li><li>差分、二分、双指针</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W03</span><label><input type="checkbox">完成</label></div><h3>模拟与贪心</h3><p>训练长题面下的状态管理与边界意识。</p><ul><li>时间线模拟、计数模拟</li><li>局部最优与排序贪心</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W04</span><label><input type="checkbox">完成</label></div><h3>搜索与剪枝</h3><p>建立从状态、转移到剪枝的思考顺序。</p><ul><li>DFS / BFS / 回溯</li><li>状态表示与可行性判断</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W05</span><label><input type="checkbox">完成</label></div><h3>图论基础</h3><p>解决连通性、距离、依赖关系问题。</p><ul><li>并查集、拓扑排序</li><li>BFS、Dijkstra、MST</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W06</span><label><input type="checkbox">完成</label></div><h3>线性 DP</h3><p>学会定义状态，而不是背答案。</p><ul><li>背包、LIS、路径 DP</li><li>状态转移与初始化</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W07</span><label><input type="checkbox">完成</label></div><h3>树与区间</h3><p>补齐中档题常见的数据结构模型。</p><ul><li>树遍历、树上 DP</li><li>树状数组、线段树</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W08</span><label><input type="checkbox">完成</label></div><h3>数学与字符串</h3><p>处理计数、模运算和基础匹配问题。</p><ul><li>GCD、筛法、快速幂</li><li>Trie、KMP、字符串哈希</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W09</span><label><input type="checkbox">完成</label></div><h3>近年真题 1</h3><p>第一次整套训练，重点观察时间分配。</p><ul><li>连续 4 小时完成一套</li><li>统计每题得分与耗时</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W10</span><label><input type="checkbox">完成</label></div><h3>近年真题 2</h3><p>把失分点变成可执行的检查项。</p><ul><li>错题重做与对拍</li><li>补缺一项薄弱算法</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W11</span><label><input type="checkbox">完成</label></div><h3>全真模拟</h3><p>训练切题、提交和调试节奏。</p><ul><li>至少两次完整模拟</li><li>整理自己的代码模板</li></ul></article>
+        <article class="week-card"><div class="week-top"><span class="week-no">W12</span><label><input type="checkbox">完成</label></div><h3>收口与上场</h3><p>降低波动，准备证件和考试环境。</p><ul><li>只复习错题与模板</li><li>确认当期官方通知</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section" id="today">
+      <div class="section-heading">
+        <div><p class="section-kicker">03 / daily loop</p><h2>今天照着做，别等状态</h2></div>
+        <p class="section-intro">每天 2-3 小时即可。关键是固定动作：输入、独立完成、复盘、记录。</p>
+      </div>
+      <div class="split">
+        <div class="action-list">
+          <div class="action"><span class="action-index">01</span><div><h3>热身：复写一个模板</h3><p>不看资料写出快速输入、排序、二分或 BFS 模板，并解释每一行。</p></div><span class="action-time">20 MIN</span></div>
+          <div class="action"><span class="action-index">02</span><div><h3>主练：独立做一道题</h3><p>先读数据范围，写出暴力，再决定是否优化。卡住 40 分钟就先换题。</p></div><span class="action-time">90 MIN</span></div>
+          <div class="action"><span class="action-index">03</span><div><h3>复盘：写下一个错误</h3><p>记录错误类别、触发条件和下一次检查动作，不要只保存题解链接。</p></div><span class="action-time">25 MIN</span></div>
+          <div class="action"><span class="action-index">04</span><div><h3>收尾：补一道同型题</h3><p>从题单中再做一道同模型题，让算法从“看懂”变成“会用”。</p></div><span class="action-time">30 MIN</span></div>
+        </div>
+        <aside class="note">
+          <h3>今天的验收标准</h3>
+          <p>结束时不问“我看了多少视频”，只问下面三件事：</p>
+          <ol><li>我能说出这道题的状态和复杂度吗？</li><li>我能不看题解重写关键代码吗？</li><li>我知道自己下一次会检查什么吗？</li></ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-heading">
+        <div><p class="section-kicker">04 / resource shelf</p><h2>把链接放在手边</h2></div>
+        <p class="section-intro">先选一套主线课程，再用题库和真题验证。视频用于理解，代码必须自己敲。</p>
+      </div>
+      <div class="resource-grid">
+        <a class="resource" href="https://www.cspro.org/" target="_blank" rel="noopener"><div><span class="resource-tag">OFFICIAL</span><strong>CCF-CSP 官方网站</strong><span>查看场次、报名、通知与成绩相关信息。</span></div><span class="resource-arrow">↗</span></a>
+        <a class="resource" href="https://oi-wiki.org/" target="_blank" rel="noopener"><div><span class="resource-tag">REFERENCE</span><strong>OI Wiki</strong><span>算法、数据结构和竞赛知识的结构化参考。</span></div><span class="resource-arrow">↗</span></a>
+        <a class="resource" href="https://www.acwing.com/" target="_blank" rel="noopener"><div><span class="resource-tag">COURSE + OJ</span><strong>AcWing</strong><span>基础算法课程、题库和配套讲解。</span></div><span class="resource-arrow">↗</span></a>
+        <a class="resource" href="https://www.luogu.com.cn/" target="_blank" rel="noopener"><div><span class="resource-tag">PRACTICE</span><strong>洛谷</strong><span>刷题、题解和 CSP 相关题目检索。</span></div><span class="resource-arrow">↗</span></a>
+        <a class="resource" href="https://search.bilibili.com/all?keyword=CCF%20CSP%20%E5%8E%86%E5%B9%B4%E7%9C%9F%E9%A2%98%20%E8%AE%B2%E8%A7%A3" target="_blank" rel="noopener"><div><span class="resource-tag">VIDEO</span><strong>Bilibili：CSP 真题讲解</strong><span>适合在独立思考后，用来核对思路和实现。</span></div><span class="resource-arrow">↗</span></a>
+        <a class="resource" href="https://search.bilibili.com/all?keyword=C%2B%2B%20STL%20%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B" target="_blank" rel="noopener"><div><span class="resource-tag">VIDEO</span><strong>Bilibili：C++ 与算法基础</strong><span>搜索入口，按自己的基础选择系列课程。</span></div><span class="resource-arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="exam">
+      <div class="section-heading">
+        <div><p class="section-kicker">05 / exam room</p><h2>最后把波动降下来</h2></div>
+        <p class="section-intro">考场上最值钱的是可控的节奏。先拿确定分，再用剩余时间换更高分。</p>
+      </div>
+      <table class="score-table">
+        <thead><tr><th>阶段</th><th>动作</th><th>自检问题</th></tr></thead>
+        <tbody>
+          <tr><td>开始 15 分钟</td><td>浏览所有题，标记确定题、部分分题和暂时跳过题。</td><td>数据范围是什么？哪题最适合先拿分？</td></tr>
+          <tr><td>中段 2 小时</td><td>完成基础题，提交能拿部分分的版本，及时切换。</td><td>我是否在一题上消耗过久？</td></tr>
+          <tr><td>结束前 30 分钟</td><td>检查溢出、下标、清空、复杂度和输出格式。</td><td>最小值、最大值、重复值能过吗？</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">报名、考点、考试语言和入场要求可能随场次调整。训练最后一周务必回到 CCF-CSP 官方网站，逐项核对当期通知。</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner"><span>CCF-CSP 备考训练台 · 先完成今天的一题</span><button class="reset" id="resetProgress">清除本机进度</button><a href="#top">回到顶部 ↑</a></div>
+  </footer>
+
+  <script>
+    // 使用本地存储保留 12 周勾选状态，刷新页面不会丢失进度。
+    const boxes = [...document.querySelectorAll('.week-card input')];
+    const cards = [...document.querySelectorAll('.week-card')];
+    const progressBar = document.querySelector('#progressBar');
+    const progressLabel = document.querySelector('#progressLabel');
+    const storageKey = 'csp-training-progress-v1';
+
+    function updateProgress() {
+      const done = boxes.filter((box) => box.checked).length;
+      const percent = Math.round((done / boxes.length) * 100);
+      progressBar.style.width = `${percent}%`;
+      progressLabel.textContent = `${done} / ${boxes.length} 周`;
+      cards.forEach((card) => card.classList.toggle('completed', card.querySelector('input').checked));
+      localStorage.setItem(storageKey, JSON.stringify(boxes.map((box) => box.checked)));
+    }
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      boxes.forEach((box, index) => { box.checked = Boolean(saved[index]); });
+    } catch (error) { /* 浏览器禁用本地存储时仍允许页面正常使用。 */ }
+    boxes.forEach((box) => box.addEventListener('change', updateProgress));
+    document.querySelector('#resetProgress').addEventListener('click', () => {
+      boxes.forEach((box) => { box.checked = false; });
+      updateProgress();
+    });
+    updateProgress();
+  </script>
+</body>
+</html>
