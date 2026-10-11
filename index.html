@@ -242,6 +242,53 @@
     .score-table td:first-child { width: 24%; font-weight: 700; }
     .callout { margin-top: 20px; padding: 16px 18px; border-left: 4px solid var(--orange); background: #f8e9dc; color: #5d463d; font-size: 13px; }
 
+    .launch-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); }
+    .launch-day { min-height: 220px; padding: 16px; background: var(--paper); }
+    .launch-day:nth-child(2n) { background: #eef3ee; }
+    .launch-day:nth-child(3n) { background: #f7eadc; }
+    .launch-day h3 { margin: 22px 0 7px; font-size: 15px; line-height: 1.2; }
+    .launch-day p { min-height: 65px; margin-bottom: 14px; color: #66716b; font-size: 12px; }
+    .launch-day label { display: flex; align-items: center; gap: 6px; color: #55615b; font-size: 11px; cursor: pointer; }
+    .launch-day input { width: 15px; height: 15px; accent-color: var(--orange); }
+    .launch-no { color: #c15126; font: 700 11px var(--mono); }
+
+    .topic-shell { display: grid; grid-template-columns: 240px 1fr; gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); }
+    .topic-tabs { display: grid; align-content: start; background: var(--ink-soft); }
+    .topic-tab { padding: 15px 17px; color: #c4ceca; border: 0; border-bottom: 1px solid var(--line); background: transparent; text-align: left; font: 12px var(--mono); }
+    .topic-tab:hover, .topic-tab.active { color: var(--ink); background: var(--mint); }
+    .topic-panel { min-height: 300px; padding: 28px; background: var(--paper); }
+    .topic-panel h3 { margin-bottom: 7px; font-size: 24px; letter-spacing: -.03em; }
+    .topic-panel > p { max-width: 650px; margin-bottom: 22px; color: #5e6863; font-size: 14px; }
+    .topic-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .topic-columns h4 { margin: 0 0 8px; color: #c15126; font: 11px var(--mono); letter-spacing: .06em; }
+    .topic-columns ul { margin: 0; padding-left: 18px; color: #39433e; font-size: 13px; }
+    .topic-columns li + li { margin-top: 5px; }
+
+    .score-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .score-step { padding: 22px; border: 1px solid var(--line-dark); background: rgba(255, 255, 255, .26); }
+    .score-step:nth-child(2) { background: #eaf1ed; }
+    .score-step:nth-child(3) { background: #f7eadc; }
+    .score-number { margin-bottom: 20px; color: #c15126; font: 700 24px var(--mono); }
+    .score-step h3 { margin-bottom: 7px; font-size: 18px; }
+    .score-step p { min-height: 45px; margin-bottom: 14px; color: #66716b; font-size: 13px; }
+    .score-step ul { margin: 0; padding-left: 18px; color: #39433e; font-size: 12px; }
+
+    .log-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 24px; }
+    .log-form { display: grid; gap: 13px; padding: 22px; color: var(--paper); background: var(--ink-soft); }
+    .field { display: grid; gap: 6px; }
+    .field label { color: var(--mint); font: 11px var(--mono); }
+    .field input, .field select, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 3px; padding: 9px 10px; color: var(--paper); background: rgba(244, 240, 232, .07); }
+    .field textarea { min-height: 86px; resize: vertical; }
+    .field input::placeholder, .field textarea::placeholder { color: #8d9993; }
+    .log-form .button { width: fit-content; }
+    .log-list { border-top: 1px solid var(--line-dark); }
+    .log-empty { padding: 21px 0; color: #68736d; font-size: 13px; }
+    .log-item { display: grid; grid-template-columns: 100px 1fr auto; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line-dark); }
+    .log-item time, .log-item strong { font: 11px var(--mono); }
+    .log-item time { color: #c15126; }
+    .log-item p { margin: 3px 0 0; color: #5e6863; font-size: 13px; }
+    .log-score { color: #425c55; font: 11px var(--mono); white-space: nowrap; }
+
     .footer { padding: 26px clamp(20px, 5vw, 76px); color: #c4ceca; background: var(--ink); }
     .footer-inner { display: flex; justify-content: space-between; gap: 22px; max-width: 1240px; margin: auto; font-size: 12px; }
     .footer a { color: var(--mint); }
@@ -251,6 +298,10 @@
       .hero-inner, .split { grid-template-columns: 1fr; }
       .hero-board { max-width: 520px; }
       .path { grid-template-columns: repeat(2, 1fr); }
+      .launch-grid { grid-template-columns: repeat(4, 1fr); }
+      .topic-shell, .log-layout { grid-template-columns: 1fr; }
+      .topic-tabs { grid-template-columns: repeat(3, 1fr); }
+      .topic-tab { border-right: 1px solid var(--line); }
       .week-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 560px) {
@@ -258,11 +309,15 @@
       .nav { justify-content: flex-start; gap: 11px; }
       .hero { padding-top: 54px; }
       h1 { font-size: 48px; }
-      .path, .week-grid, .resource-grid { grid-template-columns: 1fr; }
+      .path, .week-grid, .resource-grid, .launch-grid, .score-steps { grid-template-columns: 1fr; }
+      .topic-tabs { grid-template-columns: 1fr 1fr; }
+      .topic-columns { grid-template-columns: 1fr; gap: 14px; }
       .section-heading { display: block; }
       .section-intro { margin-top: 16px; }
       .action { grid-template-columns: 28px 1fr; }
       .action-time { grid-column: 2; }
+      .log-item { grid-template-columns: 1fr auto; }
+      .log-item p { grid-column: 1 / -1; }
       .footer-inner { flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -275,8 +330,11 @@
     <a class="brand" href="#top" aria-label="回到页面顶部"><span class="brand-mark">C</span> CSP TRAINING DESK</a>
     <nav class="nav" aria-label="页面导航">
       <a href="#route">路线图</a>
+      <a href="#start">前 7 天</a>
       <a href="#plan">12 周计划</a>
+      <a href="#map">知识地图</a>
       <a href="#today">今天做什么</a>
+      <a href="#log">训练记录</a>
       <a href="#resources">资源库</a>
     </nav>
   </header>
@@ -318,9 +376,25 @@
       </div>
     </section>
 
+    <section class="section" id="start">
+      <div class="section-heading">
+        <div><p class="section-kicker">02 / first seven days</p><h2>先完成这一周的启动清单</h2></div>
+        <p class="section-intro">如果你还没有固定节奏，不要从“把所有算法学完”开始。照着下面七天走一遍，周末就能做第一次小型模拟。</p>
+      </div>
+      <div class="launch-grid">
+        <article class="launch-day"><span class="launch-no">DAY 01</span><h3>装好工具</h3><p>安装编译器或配置在线评测环境，编译一份最小 C++ 程序。</p><label><input type="checkbox" data-start-check="1">完成</label></article>
+        <article class="launch-day"><span class="launch-no">DAY 02</span><h3>输入与容器</h3><p>练习快速输入、vector、string、map、set，各写一个小例子。</p><label><input type="checkbox" data-start-check="2">完成</label></article>
+        <article class="launch-day"><span class="launch-no">DAY 03</span><h3>复杂度直觉</h3><p>拿 5 道简单题，先只看数据范围，写下可接受的复杂度。</p><label><input type="checkbox" data-start-check="3">完成</label></article>
+        <article class="launch-day"><span class="launch-no">DAY 04</span><h3>做一道模拟</h3><p>独立完成一题长题面模拟，重点检查边界、初始化和输出。</p><label><input type="checkbox" data-start-check="4">完成</label></article>
+        <article class="launch-day"><span class="launch-no">DAY 05</span><h3>掌握前缀和</h3><p>写一维和二维前缀和，分别测试最小、最大和空区间。</p><label><input type="checkbox" data-start-check="5">完成</label></article>
+        <article class="launch-day"><span class="launch-no">DAY 06</span><h3>二分与搜索</h3><p>练习“答案二分”和 BFS，写出判定函数与队列状态。</p><label><input type="checkbox" data-start-check="6">完成</label></article>
+        <article class="launch-day"><span class="launch-no">DAY 07</span><h3>90 分钟小测</h3><p>从题库选 2-3 题连续完成，写下每题耗时与一个失分点。</p><label><input type="checkbox" data-start-check="7">完成</label></article>
+      </div>
+    </section>
+
     <section class="section" id="plan">
       <div class="section-heading">
-        <div><p class="section-kicker">02 / twelve-week plan</p><h2>每周只抓一个主线</h2></div>
+        <div><p class="section-kicker">03 / twelve-week plan</p><h2>每周只抓一个主线</h2></div>
         <p class="section-intro">完成一周后勾选它，进度会自动保存在当前浏览器。不要追求“看完”，要追求“能独立写出来”。</p>
       </div>
       <div class="progress-wrap"><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div><span class="progress-label" id="progressLabel">0 / 12 周</span></div>
@@ -340,9 +414,38 @@
       </div>
     </section>
 
+    <section class="section" id="map">
+      <div class="section-heading">
+        <div><p class="section-kicker">04 / knowledge map</p><h2>按题型找到下一步</h2></div>
+        <p class="section-intro">遇到不会的题，先从题目现象定位模型，再回到对应知识点。每个主题都配了“会到什么程度”的验收线。</p>
+      </div>
+      <div class="topic-shell">
+        <div class="topic-tabs" role="tablist" aria-label="知识主题">
+          <button class="topic-tab active" role="tab" aria-selected="true" data-topic="simulation">模拟与基础</button>
+          <button class="topic-tab" role="tab" aria-selected="false" data-topic="graph">图论</button>
+          <button class="topic-tab" role="tab" aria-selected="false" data-topic="dp">动态规划</button>
+          <button class="topic-tab" role="tab" aria-selected="false" data-topic="data">数据结构</button>
+          <button class="topic-tab" role="tab" aria-selected="false" data-topic="math">数学与字符串</button>
+        </div>
+        <div class="topic-panel" id="topicPanel"></div>
+      </div>
+    </section>
+
+    <section class="section" id="score">
+      <div class="section-heading">
+        <div><p class="section-kicker">05 / score ladder</p><h2>按目标分数分配精力</h2></div>
+        <p class="section-intro">不要把所有时间平均分给所有知识点。先确定希望拿到哪一档，再反推训练重点。</p>
+      </div>
+      <div class="score-steps">
+        <article class="score-step"><div class="score-number">基础档</div><h3>先保证确定分</h3><p>目标是稳定完成前两题，并减少格式和边界错误。</p><ul><li>模拟、排序、前缀和</li><li>每天至少一道简单题</li><li>练习完整提交流程</li></ul></article>
+        <article class="score-step"><div class="score-number">进阶档</div><h3>拿下前三题</h3><p>在基础题之上，补齐搜索、图论和线性 DP。</p><ul><li>每周一套限时题</li><li>整理 10 个常用模板</li><li>训练部分分意识</li></ul></article>
+        <article class="score-step"><div class="score-number">冲刺档</div><h3>处理复杂中档题</h3><p>用真题定位高级算法，重点是建模和实现速度。</p><ul><li>树、区间和高级 DP</li><li>每周两次全真模拟</li><li>保留 30 分钟检查</li></ul></article>
+      </div>
+    </section>
+
     <section class="section" id="today">
       <div class="section-heading">
-        <div><p class="section-kicker">03 / daily loop</p><h2>今天照着做，别等状态</h2></div>
+        <div><p class="section-kicker">06 / daily loop</p><h2>今天照着做，别等状态</h2></div>
         <p class="section-intro">每天 2-3 小时即可。关键是固定动作：输入、独立完成、复盘、记录。</p>
       </div>
       <div class="split">
@@ -360,9 +463,27 @@
       </div>
     </section>
 
+    <section class="section" id="log">
+      <div class="section-heading">
+        <div><p class="section-kicker">07 / practice log</p><h2>留下每天的证据</h2></div>
+        <p class="section-intro">记录不是写日记，而是让下一次训练有依据。数据只保存在当前浏览器，不会上传。</p>
+      </div>
+      <div class="log-layout">
+        <form class="log-form" id="logForm">
+          <div class="field"><label for="logDate">日期</label><input id="logDate" type="date" required></div>
+          <div class="field"><label for="logTopic">主题</label><select id="logTopic"><option>模拟与基础</option><option>图论</option><option>动态规划</option><option>数据结构</option><option>数学与字符串</option><option>整套真题</option></select></div>
+          <div class="field"><label for="logHours">训练时长（分钟）</label><input id="logHours" type="number" min="1" max="720" placeholder="例如 120" required></div>
+          <div class="field"><label for="logScore">结果 / 得分</label><input id="logScore" type="text" maxlength="40" placeholder="例如：2 题 / CSP 练习 180 分"></div>
+          <div class="field"><label for="logNote">一句复盘</label><textarea id="logNote" maxlength="180" placeholder="我今天真正学会了什么？下次要检查什么？" required></textarea></div>
+          <button class="button primary" type="submit">保存今天的记录 ↗</button>
+        </form>
+        <div><div class="log-list" id="logList"><p class="log-empty">还没有记录。完成今天的训练后，在左侧写下第一条。</p></div></div>
+      </div>
+    </section>
+
     <section class="section" id="resources">
       <div class="section-heading">
-        <div><p class="section-kicker">04 / resource shelf</p><h2>把链接放在手边</h2></div>
+        <div><p class="section-kicker">08 / resource shelf</p><h2>把链接放在手边</h2></div>
         <p class="section-intro">先选一套主线课程，再用题库和真题验证。视频用于理解，代码必须自己敲。</p>
       </div>
       <div class="resource-grid">
@@ -377,7 +498,7 @@
 
     <section class="section" id="exam">
       <div class="section-heading">
-        <div><p class="section-kicker">05 / exam room</p><h2>最后把波动降下来</h2></div>
+        <div><p class="section-kicker">09 / exam room</p><h2>最后把波动降下来</h2></div>
         <p class="section-intro">考场上最值钱的是可控的节奏。先拿确定分，再用剩余时间换更高分。</p>
       </div>
       <table class="score-table">
@@ -423,6 +544,123 @@
       updateProgress();
     });
     updateProgress();
+
+    const startChecks = [...document.querySelectorAll('[data-start-check]')];
+    const startStorageKey = 'csp-start-progress-v1';
+    try {
+      const savedStart = JSON.parse(localStorage.getItem(startStorageKey) || '[]');
+      startChecks.forEach((box, index) => { box.checked = Boolean(savedStart[index]); });
+    } catch (error) { /* 本地存储不可用时，启动清单仍可正常勾选。 */ }
+    startChecks.forEach((box) => box.addEventListener('change', () => {
+      localStorage.setItem(startStorageKey, JSON.stringify(startChecks.map((item) => item.checked)));
+    }));
+
+    const topicData = {
+      simulation: {
+        title: '模拟与基础',
+        intro: '题目把规则写成一段故事时，先把对象、状态和事件拆开，再按时间或顺序推进。',
+        learn: ['输入输出与边界', '排序、枚举、前缀和', '差分、二分、双指针'],
+        practice: ['每天 1 道长题面模拟', '为每个变量写清含义', '给最小值和最大值造数据'],
+        check: '能在 15 分钟内写出一版可运行的基础解法。'
+      },
+      graph: {
+        title: '图论',
+        intro: '先把题目中的“关系”画成点和边，再根据边权、方向和目标选择算法。',
+        learn: ['DFS / BFS 与连通性', '并查集、拓扑排序', 'Dijkstra、最小生成树'],
+        practice: ['先写邻接表模板', '手算一个小图的过程', '检查不可达与重复边'],
+        check: '看到连通、最短、依赖、合并等词时，能快速定位模型。'
+      },
+      dp: {
+        title: '动态规划',
+        intro: 'DP 的第一步不是套模板，而是明确“状态代表什么”，再写转移和初始化。',
+        learn: ['线性 DP 与背包', 'LIS、路径和区间 DP', '状态压缩的简单应用'],
+        practice: ['先写暴力递归', '画出状态转移表', '验证首项和不可达状态'],
+        check: '能用一句话解释 dp[i] 的含义，并说明每个转移来源。'
+      },
+      data: {
+        title: '数据结构',
+        intro: '当重复查询和修改成为瓶颈时，选择能维护“需要的信息”的结构。',
+        learn: ['栈、队列、堆', '哈希、set、map', '并查集、树状数组、线段树'],
+        practice: ['掌握常用 STL 接口', '先估算操作次数', '对边界下标做专项测试'],
+        check: '能说清每个操作的复杂度，并写出不依赖题解的模板。'
+      },
+      math: {
+        title: '数学与字符串',
+        intro: '用最小的数学工具消掉重复计算；字符串题先判断是匹配、计数还是结构查询。',
+        learn: ['GCD、筛法、快速幂', '模运算与组合计数', 'Trie、KMP、字符串哈希'],
+        practice: ['整理常用数论函数', '注意取模和溢出', '用重复字符测试匹配'],
+        check: '能从约束判断是否需要预处理、快速幂或字符串索引结构。'
+      }
+    };
+    const topicPanel = document.querySelector('#topicPanel');
+    const topicTabs = [...document.querySelectorAll('.topic-tab')];
+    function renderTopic(topic) {
+      const item = topicData[topic];
+      topicPanel.innerHTML = `<h3>${item.title}</h3><p>${item.intro}</p><div class="topic-columns"><div><h4>先学这些</h4><ul>${item.learn.map((text) => `<li>${text}</li>`).join('')}</ul></div><div><h4>这样练</h4><ul>${item.practice.map((text) => `<li>${text}</li>`).join('')}</ul></div><div><h4>验收线</h4><ul><li>${item.check}</li></ul></div></div>`;
+    }
+    topicTabs.forEach((tab) => tab.addEventListener('click', () => {
+      topicTabs.forEach((item) => {
+        const active = item === tab;
+        item.classList.toggle('active', active);
+        item.setAttribute('aria-selected', String(active));
+      });
+      renderTopic(tab.dataset.topic);
+    }));
+    renderTopic('simulation');
+
+    const logForm = document.querySelector('#logForm');
+    const logList = document.querySelector('#logList');
+    const logDate = document.querySelector('#logDate');
+    const logStorageKey = 'csp-practice-log-v1';
+    logDate.value = new Date().toISOString().slice(0, 10);
+
+    function readLogs() {
+      try { return JSON.parse(localStorage.getItem(logStorageKey) || '[]'); } catch (error) { return []; }
+    }
+    function renderLogs() {
+      const logs = readLogs();
+      logList.innerHTML = '';
+      if (!logs.length) {
+        const empty = document.createElement('p');
+        empty.className = 'log-empty';
+        empty.textContent = '还没有记录。完成今天的训练后，在左侧写下第一条。';
+        logList.appendChild(empty);
+        return;
+      }
+      logs.forEach((log) => {
+        const item = document.createElement('article');
+        item.className = 'log-item';
+        const date = document.createElement('time');
+        date.textContent = log.date;
+        const body = document.createElement('div');
+        const title = document.createElement('strong');
+        title.textContent = `${log.topic} · ${log.minutes} 分钟`;
+        const note = document.createElement('p');
+        note.textContent = log.note;
+        body.append(title, note);
+        const score = document.createElement('span');
+        score.className = 'log-score';
+        score.textContent = log.score || '未填写结果';
+        item.append(date, body, score);
+        logList.appendChild(item);
+      });
+    }
+    logForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const logs = readLogs();
+      logs.unshift({
+        date: logDate.value,
+        topic: document.querySelector('#logTopic').value,
+        minutes: document.querySelector('#logHours').value,
+        score: document.querySelector('#logScore').value.trim(),
+        note: document.querySelector('#logNote').value.trim()
+      });
+      localStorage.setItem(logStorageKey, JSON.stringify(logs.slice(0, 12)));
+      logForm.reset();
+      logDate.value = new Date().toISOString().slice(0, 10);
+      renderLogs();
+    });
+    renderLogs();
   </script>
 </body>
 </html>
